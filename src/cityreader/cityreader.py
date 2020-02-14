@@ -176,27 +176,31 @@ def cityreader_stretch(lat1, lon1, lat2, lon2, cities=[]):
     # TODO Ensure that the lat and lon valuse are all floats
     # Go through each city and check to see if it falls within
     # the specified coordinates.
-    max_lat = max(lat1, lat2)
-    min_lat = min(lat1, lat2)
-    max_lon = max(lon1, lon2)
-    min_lon = min(lon1, lon2)
+    max_lat = max(float(lat1), float(lat2))
+    min_lat = min(float(lat1), float(lat2))
+    max_lon = max(float(lon1), float(lon2))
+    min_lon = min(float(lon1), float(lon2))
 
     within = [city for city in cities if
               check_point(city.lat, max_lat, min_lat) and check_point(city.lon, max_lon, min_lon)]
 
     return within
 
-print(cityreader_stretch(45, -100, 32, -120, cities))
 
-# while True:
-#     first_point = input("Enter in your first lat, long: ")
-#     if len(check_input(first_point)) == 2:
-#         break
-#
-# while True:
-#     second_point = input("Enter in your second lat, long: ")
-#     if len(check_input(second_point)) == 2:
-#         break
-#
-# first = check_input(first_point)
-# second = check_input(second_point)
+
+while True:
+    first_point = input("Enter in your first lat, long: ")
+    if check_input(first_point) is not None:
+        break
+
+while True:
+    second_point = input("Enter in your second lat, long: ")
+    if check_input(second_point) is not None:
+        break
+
+first = check_input(first_point)
+second = check_input(second_point)
+print(cityreader_stretch(first[0], first[1], second[0], second[1], cities))
+
+
+
